@@ -25,6 +25,10 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" map vsplit carousel keys
+map <F12> <c-w>l<c-w><bar>
+map <F11> <c-w>h<c-w><bar>
+
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
