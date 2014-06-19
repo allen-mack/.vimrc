@@ -32,6 +32,9 @@ map <F11> <c-w>h<c-w><bar>
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
+" easier way to escape from insert mode
+inoremap jk <esc>
+
 " Enable syntax highlighting
 filetype off
 filetype plugin indent on
