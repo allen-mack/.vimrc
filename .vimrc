@@ -1,16 +1,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" VIM Pathogen
+" Pathogen
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call pathogen#infect()
 call pathogen#helptags()
 
+" AIRLINE
+set laststatus=2   " Make sure that the status bar is always visible
+set t_Co=256       " Set the color scheme
+
 " Automatic reloading of _vimrc
 autocmd! bufwritepost _vimrc source %
+
+" Markdown - Treat *.md files as markdown instead of Modula-2
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Removes highlight of your last search
 noremap <C-n> :nohl<CR>
 vnoremap <C-n> :nohl<CR>
 inoremap <C-n> :nohl<CR>
+
+" Resize vertical splits
+noremap } <C-w>>
+noremap { <C-w><
 
 " make backspace behave like normal again
 set bs=2
@@ -29,11 +40,17 @@ map <c-h> <c-w>h
 map <F12> <c-w>l<c-w><bar>
 map <F11> <c-w>h<c-w><bar>
 
-" map sort function to a key
-vnoremap <Leader>s :sort<CR>
+" map vim-spec commands
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
 
 " easier way to escape from insert mode
 inoremap jk <esc>
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
 
 " Enable syntax highlighting
 filetype off
@@ -48,37 +65,8 @@ set softtabstop=4 " insert/delete 4 spaces when hitting a TAB/BACKSPC
 set shiftround " round indent to multiple of 'shiftwidth'
 set autoindent " align the new line indent with the previous line
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGIN SETTINGS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim-powerline
-"" set laststatus=2
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
-" python-mode
-"" map <Leader>g :call RopeGotoDefinition()<CR>
-"" let ropevim_enable_shortcuts = 1
-"" let g:pymode_rope_goto_def_newwin = "vnew"
-"" let g:pymode_rope_extended_complete = 1
-"" let g:pymode_breakpoint = 0
-"" let g:pymode_syntax = 1
-"" let g:pymode_syntax_builtin_objs = 0
-"" let g:pymode_syntax_builtin_funcs = 0
-"" let g:pymode_folding = 1
-"" map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-" Better navigating through omnicomplete option list
-" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for
-"" set completeopt=longest,menuone
-"" function! OmniPopup(action)
-""     if pumvisible()
-""         if a:action == 'j'
-""             return \"\<C-N>"
-""         elseif a:action == 'k'
-""             return \"\<C-P>"
-""         endif
-""     endif
-"" endfunction
-
-"" inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-"" inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
