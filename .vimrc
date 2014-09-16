@@ -40,6 +40,10 @@ map <c-h> <c-w>h
 map <F12> <c-w>l<c-w><bar>
 map <F11> <c-w>h<c-w><bar>
 
+" open splits in a more intuitive way
+set splitbelow              " Splits window BELOW current window
+set splitright              " Open new split on the right
+
 " map vim-spec commands
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
